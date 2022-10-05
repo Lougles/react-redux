@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 function App() {
   const dispatch = useDispatch()
-  const cash = useSelector(state => state.cash)
+  const cash = useSelector(state => state.cashReducer.cash)
   console.log(cash);
   
   const addCash = (cash) => {
