@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 
 
 function App() {
-  
   const dispatch = useDispatch()
   const cash = useSelector(state => state.cash)
   console.log(cash);
