@@ -4,11 +4,15 @@ import App from './App';
 import {legacy_createStore} from "redux";
 import {Provider} from "react-redux";
 
+//Action example
 const action = {type: '', payload: '/'}
+
+//State example
 const defaultState = {
   cash: 0,
 }
 
+//Reducer example
 const reducer = (state = defaultState, action) => {
   switch (action.type){
     case "ADD_CASH":
@@ -20,10 +24,13 @@ const reducer = (state = defaultState, action) => {
   }
 }
 
+//Store
 const store = legacy_createStore(reducer)
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  //Only provider must have store
   <Provider store={store}>
     <React.StrictMode>
       <App />
