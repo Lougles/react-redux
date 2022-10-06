@@ -1,13 +1,10 @@
-import {legacy_createStore, combineReducers, applyMiddleware} from "redux";
-import {cashReducer} from "./cashReducer";
-import {customerReducer} from "./customerReducer";
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from "redux-thunk";
-
-
+import {legacy_createStore, combineReducers} from "redux";
+import {countReducer} from "./countReducer";
+import {userReducer} from "./userReducer";
 
 const rootReducer = combineReducers({
-  cashReducer, customerReducer,
+  countReducer,
+  userReducer
 });
 
-export const store = legacy_createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+export const store = legacy_createStore(rootReducer);
