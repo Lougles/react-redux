@@ -14,6 +14,16 @@ function App() {
   const getCash = (cash) => {
     dispatch({type: "GET_CASH", payload: cash})
   }
+  const AddClient = (name) => {
+    const client = {
+      id: Date.now() + name,
+      name
+    }
+    dispatch({type: "ADD_CLIENT", payload: client})
+  }
+  const removeClient = (client) => {
+    dispatch({type: "DELETE_CLIENT", payload: client.id})
+  }
   
   return (
     <div className="App">
@@ -21,14 +31,15 @@ function App() {
       <div style={{display: 'flex', justifyContent: 'center'}}>
         <Button onClick={() => addCash(Number(prompt()))} variant="success">Increase deposit</Button>
         <Button onClick={() => getCash(Number(prompt()))} variant="danger">Withdraw deposit</Button>
-        <Button onClick={() => getCash(Number(prompt()))} variant="success">Add client</Button>
+        <Button onClick={() => AddClient(prompt())} variant="success">Add client</Button>
         <Button onClick={() => getCash(Number(prompt()))} variant="danger">Delete client</Button>
       </div>
       <div>
         {customers.length > 0 ?
           <div>
             {customers.map(client =>
-                <div>{client.name}</div>
+                <div onClick={() => removeClient(client)} style={{fontSize: '2rem', marginTop: '30px', border: '1px solid red', padding: '10px'}}>
+                  {client.name}</div>
               )}
           </div>
           :
