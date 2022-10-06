@@ -1,6 +1,7 @@
 import './App.css';
 import {useDispatch, useSelector} from "react-redux";
 import Button from 'react-bootstrap/Button';
+import {addCustomerAction, removeCustomerAction} from "./store/customerReducer";
 
 
 function App() {
@@ -19,10 +20,12 @@ function App() {
       id: Date.now() + name,
       name
     }
-    dispatch({type: "ADD_CLIENT", payload: client})
+    // dispatch({type: "ADD_CLIENT", payload: client})
+    dispatch(addCustomerAction(client));
   }
   const removeClient = (client) => {
-    dispatch({type: "DELETE_CLIENT", payload: client.id})
+    // dispatch({type: "DELETE_CLIENT", payload: client.id})
+    dispatch(removeCustomerAction(client.id));
   }
   
   return (
