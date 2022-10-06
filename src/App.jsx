@@ -2,6 +2,7 @@ import './App.css';
 import {useDispatch, useSelector} from "react-redux";
 import Button from 'react-bootstrap/Button';
 import {addCustomerAction, removeCustomerAction} from "./store/customerReducer";
+import {fetchCustomers} from "./asyncActions/customers";
 
 
 function App() {
@@ -35,13 +36,14 @@ function App() {
         <Button onClick={() => addCash(Number(prompt()))} variant="success">Increase deposit</Button>
         <Button onClick={() => getCash(Number(prompt()))} variant="danger">Withdraw deposit</Button>
         <Button onClick={() => AddClient(prompt())} variant="success">Add client</Button>
+        <Button onClick={() => dispatch(fetchCustomers())} variant="primary">Add Clients from DB</Button>
         <Button onClick={() => getCash(Number(prompt()))} variant="danger">Delete client</Button>
       </div>
       <div>
         {customers.length > 0 ?
           <div>
             {customers.map(client =>
-                <div onClick={() => removeClient(client)} style={{fontSize: '2rem', marginTop: '30px', border: '1px solid red', padding: '10px'}}>
+                <div key={client.id} onClick={() => removeClient(client)} style={{fontSize: '2rem', marginTop: '30px', border: '1px solid red', padding: '10px'}}>
                   {client.name}</div>
               )}
           </div>

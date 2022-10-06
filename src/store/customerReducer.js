@@ -9,7 +9,7 @@ const ADD_MANY_CLIENTS = 'ADD_MANY_CLIENTS';
 export const customerReducer = (state = defaultState, action) => {
   switch (action.type){
     case ADD_MANY_CLIENTS:
-      return {...state, customers: [...state.customers, ...state.payload]}
+      return {...state, customers: [...state.customers, ...action.payload]}
     case ADD_CLIENT:
       return {...state, customers:[...state.customers, action.payload]}
     case DELETE_CLIENT:
