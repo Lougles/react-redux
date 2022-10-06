@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import Button from 'react-bootstrap/Button';
-import {decrementCreator, incrementCreator} from "./store/countReducer";
+import {asyncDecrementCreator, asyncIncrementCreator, decrementCreator, incrementCreator} from "./store/countReducer";
 
 
 function App() {
@@ -15,17 +15,17 @@ function App() {
     <div className="App">
       <div style={{fontSize: '3rem'}}>Count: {count}</div>
       <div style={{display: 'flex', justifyContent: 'center'}}>
-        <Button onClick={() => dispatch(incrementCreator())} variant="success">Increment</Button>
-        <Button onClick={() => dispatch(decrementCreator())} variant="danger">Decrement</Button>
+        <Button onClick={() => dispatch(asyncIncrementCreator())} variant="success">Increment</Button>
+        <Button onClick={() => dispatch(asyncDecrementCreator())} variant="danger">Decrement</Button>
         <Button variant="secondary">GET USERS--</Button>
       </div>
-      <div className='users'>
-        {users.map(user =>
-          <div className='user'>
-            {user.name}
-          </div>
-        )}
-      </div>
+      {/*<div className='users'>*/}
+      {/*  {users.map(user =>*/}
+      {/*    <div className='user'>*/}
+      {/*      {user.name}*/}
+      {/*    </div>*/}
+      {/*  )}*/}
+      {/*</div>*/}
     </div>
   );
 }
