@@ -1,22 +1,25 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { DEC_CREATOR, INC, INC_CREATOR } from '../store/countReducer';
 
 const Counter = () => {
   const {count} = useSelector(state => state.countReducer);
   const dispatch = useDispatch();
 
-  const Increment = (num) => {
-    dispatch({type: 'plus', payload: num})
-  }
-  const Decrement = (num) => {
-    dispatch({type: 'minus', payload: num})
-  }
+function increment() {
+  dispatch(INC_CREATOR())
+}
+function decrement() {
+  dispatch(DEC_CREATOR())
+}
 
   return (
-    <div>
+    <div style={{display: 'flex', justifyContent: 'center', marginTop: 50, flexDirection: 'column', alignItems: 'center'}}>
       <div>Balance: {count}</div>
-      <button onClick={(num) => Increment(Number(prompt(num)))}>PLUS</button>
-      <button onClick={(num) => Decrement(Number(prompt(num)))}>MINUS</button>
+      <div>
+        <button onClick={() => increment()}>Deposit</button>
+        <button onClick={() => decrement()}>Withdraw</button>
+      </div>
     </div>
   )
 }

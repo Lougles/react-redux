@@ -1,16 +1,23 @@
 
+
 export const initialState = {
   count: 0,
 }
 
+export const INC = "INC"
+export const DEC = "DEC"
 
 export const countReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'plus':
-    return {...state, count: state.count + action.payload}
-    case 'minus':
-    return {...state, count: state.count - action.payload}
+    case INC:
+      return {...state, count: state.count + 1}
+    case DEC:
+      return {...state, count: state.count - 1}
     default:
       return state;
   }
 }
+
+
+export const INC_CREATOR = () => ({type: INC})
+export const DEC_CREATOR = () => ({type: DEC})
