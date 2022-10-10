@@ -1,11 +1,17 @@
-import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
-import { countReducer } from "./countReducer";
-import { studentsReducer } from "./studentsReducer";
+import { configureStore } from "@reduxjs/toolkit";
+import { counterSlice } from "./countReducer";
+import { studentsSlice } from "./studentsReducer";
 
 const sagaMiddleware = createSagaMiddleware()
 
+export const store = configureStore({
+  reducer: {
+    counterReducer: counterSlice.reducer,
+    studentReducer: studentsSlice.reducer,
+  },
+})
+
+/* before
 const rootReducer = combineReducers({
   countReducer,
   studentsReducer
@@ -13,4 +19,4 @@ const rootReducer = combineReducers({
 
 
 
-export const store = legacy_createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)));
+export const store = legacy_createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk))); */

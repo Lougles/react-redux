@@ -2,8 +2,7 @@ import React from 'react';
 import Counter from './components/Counter';
 import Students from './components/Students';
 
-
-const App = () => {
+function App() {
   return (
     <div>
       <Counter />
