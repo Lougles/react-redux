@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 import { countReducer } from "./countReducer";
 import { studentsReducer } from "./studentsReducer";
 
-
+const sagaMiddleware = createSagaMiddleware()
 
 const rootReducer = combineReducers({
   countReducer,
