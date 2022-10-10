@@ -1,17 +1,18 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { decremented, incremented } from '../store/countReducer'
-import { store } from '../store/countReducer'
+// import { store } from '../store/index'
 
 const Counter = () => {
-  const {value} = useSelector(state => state);
-  console.log(value)
+  const {value} = useSelector(state => state.counterReducer);
+  const dispatch = useDispatch();
+  // console.log(value)
 
   const handleInc = (payload) => {
-    store.dispatch(incremented(payload));
+    dispatch(incremented(payload));
   }
   const handleDec = (payload) => {
-    store.dispatch(decremented(payload));
+    dispatch(decremented(payload));
   }
 
   return (
