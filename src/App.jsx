@@ -1,57 +1,31 @@
 import './App.css';
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import Button from 'react-bootstrap/Button';
-import {addCustomerAction, removeCustomerAction} from "./store/customerReducer";
-import {fetchCustomers} from "./asyncActions/customers";
+import {asyncDecrementCreator, asyncIncrementCreator, decrementCreator, incrementCreator} from "./store/countReducer";
+import {fetchUsersCreator} from "./store/userReducer";
 
 
 function App() {
-  const dispatch = useDispatch()
-  const cash = useSelector(state => state.cashReducer.cash)
-  const customers = useSelector(state => state.customerReducer.customers)
   
-  const addCash = (cash) => {
-    dispatch({type: "ADD_CASH", payload: cash})
-  }
-  const getCash = (cash) => {
-    dispatch({type: "GET_CASH", payload: cash})
-  }
-  const AddClient = (name) => {
-    const client = {
-      id: Date.now() + name,
-      name
-    }
-    // dispatch({type: "ADD_CLIENT", payload: client})
-    dispatch(addCustomerAction(client));
-  }
-  const removeClient = (client) => {
-    // dispatch({type: "DELETE_CLIENT", payload: client.id})
-    dispatch(removeCustomerAction(client.id));
-  }
+  const count = useSelector(state => state.countReducer.count)
+  const users = useSelector(state => state.userReducer.users)
+  const dispatch = useDispatch();
   
   return (
     <div className="App">
-      <div style={{fontSize: '3rem'}}>Balance: {cash}</div>
+      <div style={{fontSize: '3rem'}}>Count: {count}</div>
       <div style={{display: 'flex', justifyContent: 'center'}}>
-        <Button onClick={() => addCash(Number(prompt()))} variant="success">Increase deposit</Button>
-        <Button onClick={() => getCash(Number(prompt()))} variant="danger">Withdraw deposit</Button>
-        <Button onClick={() => AddClient(prompt())} variant="success">Add client</Button>
-        <Button onClick={() => dispatch(fetchCustomers())} variant="primary">Add Clients from DB</Button>
-        <Button onClick={() => getCash(Number(prompt()))} variant="danger">Delete client</Button>
+        <Button onClick={() => dispatch(asyncIncrementCreator())} variant="success">Increment</Button>
+        <Button onClick={() => dispatch(asyncDecrementCreator())} variant="danger">Decrement</Button>
+        <Button variant="secondary" onClick={() => dispatch(fetchUsersCreator())}>GET USERS--</Button>
       </div>
-      <div>
-        {customers.length > 0 ?
-          <div>
-            {customers.map(client =>
-                <div key={client.id} onClick={() => removeClient(client)} style={{fontSize: '2rem', marginTop: '30px', border: '1px solid red', padding: '10px'}}>
-                  {client.name}</div>
-              )}
+      <div className='users'>
+        {users.map(user =>
+          <div key={user.id} className='user'>
+            {user.name}
           </div>
-          :
-          <div style={{fontSize: '2rem', marginTop: '20px'}}>
-            No clients
-          </div>
-        }
+        )}
       </div>
     </div>
   );
