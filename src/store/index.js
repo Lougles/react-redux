@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { counterSlice } from "./countReducer";
 import { studentsSlice } from "./studentsReducer";
-// import { studentsSlice } from "./studentsReducer";
 
 
 
