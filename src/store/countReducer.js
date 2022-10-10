@@ -1,23 +1,22 @@
-const defaultState = {
+
+export const initialState = {
   count: 0,
 }
-export const INCREMENT = "INCREMENT"
-export const ASYNC_INCREMENT = "ASYNC_INCREMENT"
-export const DECREMENT = "DECREMENT"
-export const ASYNC_DECREMENT = "ASYNC_DECREMENT"
 
-export const countReducer = (state = defaultState, action) => {
-  switch (action.type){
-    case INCREMENT:
-      return {...state, count: state.count + action.payload}
-    case DECREMENT:
-      return {...state, count: state.count - action.payload}
+export const INC = "INC"
+export const DEC = "DEC"
+
+export const countReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case INC:
+      return {...state, count: state.count + 1}
+    case DEC:
+      return {...state, count: state.count - 1}
     default:
-      return state
+      return state;
   }
 }
 
-export const incrementCreator = () => ({type: INCREMENT, payload: 1})
-export const asyncIncrementCreator = () => ({type: ASYNC_INCREMENT, payload: 1})
-export const decrementCreator = () => ({type: DECREMENT, payload: 1})
-export const asyncDecrementCreator = () => ({type: ASYNC_DECREMENT, payload: 1})
+
+export const INC_CREATOR = () => ({type: INC})
+export const DEC_CREATOR = () => ({type: DEC})

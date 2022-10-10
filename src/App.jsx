@@ -1,34 +1,15 @@
-import './App.css';
 import React from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import Button from 'react-bootstrap/Button';
-import {asyncDecrementCreator, asyncIncrementCreator, decrementCreator, incrementCreator} from "./store/countReducer";
-import {fetchUsersCreator} from "./store/userReducer";
+import Counter from './components/Counter';
+import Students from './components/Students';
 
 
-function App() {
-  
-  const count = useSelector(state => state.countReducer.count)
-  const users = useSelector(state => state.userReducer.users)
-  const dispatch = useDispatch();
-  
+const App = () => {
   return (
-    <div className="App">
-      <div style={{fontSize: '3rem'}}>Count: {count}</div>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
-        <Button onClick={() => dispatch(asyncIncrementCreator())} variant="success">Increment</Button>
-        <Button onClick={() => dispatch(asyncDecrementCreator())} variant="danger">Decrement</Button>
-        <Button variant="secondary" onClick={() => dispatch(fetchUsersCreator())}>GET USERS--</Button>
-      </div>
-      <div className='users'>
-        {users.map(user =>
-          <div key={user.id} className='user'>
-            {user.name}
-          </div>
-        )}
-      </div>
+    <div>
+      <Counter />
+      <Students />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

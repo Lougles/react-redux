@@ -1,17 +1,16 @@
-import {legacy_createStore, combineReducers, applyMiddleware} from "redux";
-import {countReducer} from "./countReducer";
-import {userReducer} from "./userReducer";
-import createSagaMiddleware from 'redux-saga'
-import {countWatcher} from "../saga/countSaga";
-import {rootWatcher} from "../saga";
+import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
+import { countReducer } from "./countReducer";
+import { studentsReducer } from "./studentsReducer";
 
 const sagaMiddleware = createSagaMiddleware()
 
 const rootReducer = combineReducers({
   countReducer,
-  userReducer
-});
+  studentsReducer
+})
 
-export const store = legacy_createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
-sagaMiddleware.run(rootWatcher);
+
+export const store = legacy_createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)));
